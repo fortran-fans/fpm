@@ -61,6 +61,12 @@ jobs:
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_V} 100 \
         --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${GCC_V} \
         --slave /usr/bin/gcov gcov /usr/bin/gcov-${GCC_V}
+        
+    - name: Check GFortran Windows
+      if: contains(matrix.os, 'windows')
+      run: |
+        gcc --version
+        gfortran --version
 
     # Phase 1: Bootstrap fpm with existing version
     - name: Install fpm
